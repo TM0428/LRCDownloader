@@ -6,7 +6,8 @@ on:
             - master
 
 jobs:
-    format:
+    lint:
+        name: Lint code
         runs-on: ubuntu-latest
 
         steps:
@@ -21,8 +22,28 @@ jobs:
             - name: Install rye
               run: curl -sSf https://rye-up.com/get | RYE_INSTALL_OPTION="--yes" bash
 
+            - name: Lint code
+              run: rye run lint
+
+    format:
+        name: Format code
+        runs-on: ubuntu-latest
+        needs: lint
+
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+
+            - name: Setup Python and Rye
+              uses: actions/setup-python@v5
+              with:
+                  python-version: "3.12"
+
+            - name: Install rye
+              run: curl -sSf https://rye-up.com/get | RYE_INSTALL_OPTION="--yes" bash
+
             - name: Format code
-              run: ruff format .
+              run: rye run format
 
             - name: Auto commit
               uses: stefanzweifel/git-auto-commit-action@v4
