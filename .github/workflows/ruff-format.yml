@@ -1,0 +1,32 @@
+name: Format Ruff code
+
+on:
+    pull_request:
+        branches:
+            - master
+
+jobs:
+    format:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v2
+
+            - name: Setup Python and Rye
+              uses: actions/setup-python@v5
+              with:
+                  python-version: "3.12"
+
+            - name: Install rye
+              run: curl -sSf https://rye-up.com/get | RYE_INSTALL_OPTION="--yes" bash
+
+            - name: Format code
+              run: ruff format .
+
+            - name: Auto commit
+              uses: stefanzweifel/git-auto-commit-action@v4
+              with:
+                  commit_message: "Format code"
+                  commit_options: "--no-verify"
+                  commit_user_name: "GitHub Actions"
