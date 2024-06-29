@@ -18,18 +18,18 @@ jobs:
               with:
                   python-version: "3.12"
 
-            - name: Install Rye
-              uses: baptiste0928/cargo-install@v2
-              with:
-                  crate: rye
-                  git: https://github.com/mitsuhiko/rye
-                  branch: main
+            - name: Install rye
+              run: curl -sSf https://rye.astral.sh/get | RYE_INSTALL_OPTION="--yes" bash
 
-            - name: Install Dependencies
-              run: rye sync
+            - name: Rye init and sync
+              run: |
+                  source "$HOME/.rye/env"
+                  rye sync
 
             - name: Lint code
-              run: rye run lint
+              run: |
+                  source "$HOME/.rye/env"
+                  rye run lint
 
     format:
         name: Format code
@@ -48,11 +48,15 @@ jobs:
             - name: Install rye
               run: curl -sSf https://rye.astral.sh/get | RYE_INSTALL_OPTION="--yes" bash
 
-            - name: Rye init
-              run: source "$HOME/.rye/env" && rye sync
+            - name: Rye init and sync
+              run: |
+                  source "$HOME/.rye/env"
+                  rye sync
 
             - name: Format code
-              run: rye run format
+              run: |
+                  source "$HOME/.rye/env"
+                  rye run format
 
             - name: Auto commit
               uses: stefanzweifel/git-auto-commit-action@v4
