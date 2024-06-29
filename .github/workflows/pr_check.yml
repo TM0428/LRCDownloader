@@ -20,7 +20,7 @@ jobs:
                   python-version: "3.12"
 
             - name: Install rye
-              run: curl -sSf https://rye-up.com/get | RYE_INSTALL_OPTION="--yes" bash
+              run: curl -sSf https://rye.astral.sh/get | RYE_INSTALL_OPTION="--yes" bash
 
             - name: Lint code
               run: rye run lint
@@ -40,7 +40,7 @@ jobs:
                   python-version: "3.12"
 
             - name: Install rye
-              run: curl -sSf https://rye-up.com/get | RYE_INSTALL_OPTION="--yes" bash
+              run: curl -sSf https://rye.astral.sh/get | RYE_INSTALL_OPTION="--yes" bash
 
             - name: Format code
               run: rye run format
