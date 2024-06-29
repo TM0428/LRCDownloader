@@ -17,6 +17,10 @@ build-backend = "hatchling.build"
 managed = true
 dev-dependencies = []
 
+[tool.rye.scripts]
+lint.cmd = "ruff check ."
+format.cmd = "ruff format ."
+
 [tool.hatch.metadata]
 allow-direct-references = true
 
