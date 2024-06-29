@@ -23,7 +23,7 @@ jobs:
             - name: Check code
               run: |
                   ruff check .
-                  ruff fix .
+                  ruff format .
 
             - name: Auto commit
               uses: stefanzweifel/git-auto-commit-action@v4
