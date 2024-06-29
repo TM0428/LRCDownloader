@@ -19,11 +19,11 @@ jobs:
                   python-version: "3.12"
             - name: Install Ruff
               run: pip install ruff
-            
+
             - name: Check code
-              run: | 
-              ruff check .
-              ruff fix .
+              run: |
+                  ruff check .
+                  ruff fix .
 
             - name: Auto commit
               uses: stefanzweifel/git-auto-commit-action@v4
