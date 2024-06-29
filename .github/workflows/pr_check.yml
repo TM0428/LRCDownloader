@@ -9,7 +9,6 @@ jobs:
     lint:
         name: Lint code
         runs-on: ubuntu-latest
-
         steps:
             - name: Checkout code
               uses: actions/checkout@v4
@@ -19,11 +18,15 @@ jobs:
               with:
                   python-version: "3.12"
 
-            - name: Install rye
-              run: curl -sSf https://rye.astral.sh/get | RYE_INSTALL_OPTION="--yes" bash
+            - name: Install Rye
+              uses: baptiste0928/cargo-install@v2
+              with:
+                  crate: rye
+                  git: https://github.com/mitsuhiko/rye
+                  branch: main
 
-            - name: Rye init
-              run: source "$HOME/.rye/env" && rye sync
+            - name: Install Dependencies
+              run: rye sync
 
             - name: Lint code
               run: rye run lint
