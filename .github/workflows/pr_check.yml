@@ -23,7 +23,7 @@ jobs:
               run: curl -sSf https://rye.astral.sh/get | RYE_INSTALL_OPTION="--yes" bash
 
             - name: Lint code
-              run: rye run lint
+              run: rye sync && rye run lint
 
     format:
         name: Format code
@@ -43,7 +43,7 @@ jobs:
               run: curl -sSf https://rye.astral.sh/get | RYE_INSTALL_OPTION="--yes" bash
 
             - name: Format code
-              run: rye run format
+              run: rye sync && rye run format
 
             - name: Auto commit
               uses: stefanzweifel/git-auto-commit-action@v4
