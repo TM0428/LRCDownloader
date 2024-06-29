@@ -25,10 +25,6 @@ jobs:
               run: |
                   source "$HOME/.rye/env"
                   rye sync
-
-            - name: Lint code
-              run: |
-                  source "$HOME/.rye/env"
                   rye run lint
 
     format:
