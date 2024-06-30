@@ -8,3 +8,21 @@
 #   with-sources: false
 
 -e file:.
+argparse==1.4.0
+    # via lrcdownloader
+certifi==2024.6.2
+    # via requests
+charset-normalizer==3.3.2
+    # via requests
+idna==3.7
+    # via requests
+prompt-toolkit==3.0.36
+    # via questionary
+questionary==2.0.1
+    # via lrcdownloader
+requests==2.32.3
+    # via lrcdownloader
+urllib3==2.2.2
+    # via requests
+wcwidth==0.2.13
+    # via prompt-toolkit
